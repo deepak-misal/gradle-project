@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+  "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+  <package name="main" extends="struts-default">
+    
+    <interceptors>	
+    <interceptor name="CustomInterceptor" 
+    class="com.techlabs.interceptor.CustomInterceptor"></interceptor>
+        	
+         <interceptor-stack name="newStack">
+     		<interceptor-ref name="CustomInterceptor"/>
+        <interceptor-ref name="defaultStack" />
+          </interceptor-stack>
+            
+    </interceptors>
+        
+    <action name="helloAction" 
+    class="com.techlabs.action.HelloAction" >
+    <interceptor-ref name="newStack"/>
+    <result name="success">/views/hello.jsp</result>
+     </action>
+    
+    
+  </package>
+</struts>
